@@ -21,6 +21,8 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 
+CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
+
 # Application definition
 
 INSTALLED_APPS = [
