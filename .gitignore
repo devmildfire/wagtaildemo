@@ -1,3 +1,7 @@
+# Replit
+.replit
+replit.nix
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -41,9 +45,6 @@ Desktop.ini
 
 media/*
 
-# Envs
-.venv/
-env
 
 # Distribution / packaging
 .Python
@@ -64,6 +65,14 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+# Python
+*.py[cod]
+*.egg*
+local.py
+.mypy_cache
+**/__pycache__/
+*.djcache
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -159,12 +168,15 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+env
 .env
-.venv
 env/
-venv/
 ENV/
 env.bak/
+venv
+.venv
+.venv/
+venv/
 venv.bak/
 
 # Spyder project settings
