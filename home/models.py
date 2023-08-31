@@ -54,6 +54,11 @@ class HomePage(RoutablePageMixin, Page):
     # for deleting Coffeeman object use:
     # Coffeeman.objects.filter(card_number="AAAA").delete()
 
+    # check if there is a Coffeeman with a given card number
+    checkCoffeeman = Coffeeman.objects.filter(card_number="AAAA")
+    print("CHECKED coffeeman object is... ", checkCoffeeman)
+    print("CHECKED coffeeman object count... ", checkCoffeeman.count() )
+
     coffeemen = Coffeeman.objects.all()
     print("coffeeman object is... ", coffeemen)
 
