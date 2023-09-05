@@ -1,16 +1,35 @@
-from wagtail.contrib.modeladmin.options import (
-    ModelAdmin, modeladmin_register)
+from wagtail.snippets.models import register_snippet
+from wagtail.snippets.views.snippets import SnippetViewSet
 from .models import Coffeeman
+from .lookup import LookUp
 
 
-class CoffeemanAdmin(ModelAdmin):
-    model = Coffeeman
-    menu_label = "Coffeemen"
-    menu_icom = "placeholder"
-    menu_order = 290
-    add_to_settings_menu = False
-    exclude_from_explorer = False
-    list_display = ("card_number", "user_name")
-    search_fields = ("card_number", "user_name")
+class CoffeemanAdmin(SnippetViewSet):
+  model = Coffeeman
+  menu_label = "Coffeemen"
+  menu_icom = "placeholder"
+  menu_order = 290
+  add_to_settings_menu = False
+  exclude_from_explorer = False
+  list_display = ("card_number", "user_name", "coffee_count", "coffee_pool",
+                  "time_stamp")
+  search_fields = ("user_name", )
+  list_export = ("card_number", "user_name", "coffee_count", "coffee_pool",
+                 "time_stamp")
 
-modeladmin_register(CoffeemanAdmin)
+
+register_snippet(CoffeemanAdmin)
+
+
+class LookUpAdmin(SnippetViewSet):
+  model = LookUp
+  menu_label = "LookUps"
+  menu_icom = "placeholder"
+  menu_order = 300
+  add_to_settings_menu = False
+  exclude_from_explorer = False
+  list_display = ("user_name", "readable_name")
+  search_fields = ("user_name", "readable_name")
+
+
+register_snippet(LookUpAdmin)
