@@ -117,11 +117,17 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Yekaterinburg"
+
+DATETIME_FORMAT = 'd.m.Y H:i'
+
+WAGTAIL_DATE_FORMAT = '%d.%m.%Y.'
+WAGTAIL_DATETIME_FORMAT = '%d.%m.%Y. %H:%M'
+WAGTAIL_TIME_FORMAT = '%H:%M'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 

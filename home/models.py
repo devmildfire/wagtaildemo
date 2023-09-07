@@ -22,7 +22,7 @@ class Coffeeman(models.Model):
                                default="User")
   coffee_count = models.IntegerField(null=True, blank=False, default=0)
   coffee_pool = models.IntegerField(null=False, blank=False, default=100)
-  time_stamp = models.TimeField(
+  time_stamp = models.DateTimeField(
     auto_now=True,
     auto_now_add=False,
     # default=datetime.now()
