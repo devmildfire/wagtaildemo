@@ -32,7 +32,9 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
+      {% comment %}  
         {% wagtailuserbar %}
+      {% endcomment %}  
 
         {% block content %}{% endblock %}
 

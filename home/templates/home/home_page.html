@@ -1,24 +1,46 @@
 {% extends "base.html" %}
 {% load static %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailroutablepage_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
 {% block extra_css %}
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home_page.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
 
-{{ page.title }}
+  {{ page.title }}
+  
+  
+ 
 
-{{ page.intro|richtext }}
+<table>
+  <thead>
+    <tr>
+      <th colspan="3">Дата последнего обновления - {{ update_time }}</th>
+    </tr>
+    <tr>
+      <th class="category" colspan="1">Имя</th>
+      <th class="category" colspan="1">Выпито</th>
+      <th class="category" colspan="1">Осталось</th>
+    </tr>
+  </thead>
+  <tbody>
 
-{{ page.body|richtext }}
+   {% for record in latest_records %}
+    
+      <tr>
+        <td>{{ record.user_name }}</td>
+        <td>{{ record.coffee_count }}</td>
+        <td>{{ record.coffee_pool }}</td>
+      </tr>
+  
+    {% endfor %}
+    
+  </tbody>
+</table>
+  
 
 
 {% endblock content %}
