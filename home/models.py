@@ -44,10 +44,16 @@ class Coffeeman(models.Model):
 class HomePage(RoutablePageMixin, Page):
   intro = RichTextField(null=True, blank=True)
   body = RichTextField(null=True, blank=True)
+  ip = models.CharField(null=True, blank=True, max_length=255)
 
   # view_count = models.PositiveBigIntegerField(default=0)
   def get_context(self, request, *args, **kwargs):
     context = super().get_context(request, *args, **kwargs)
+
+    # for coffeeman in Coffeeman.objects.all():
+    # if coffeeman.user_name == "Artyom Novoselov":
+    # Coffeeman.objects.filter(user_name="Artyom Novoselov").delete()
+    # Coffeeman.objects.filter(card_number="8a61b80").delete()
 
     coffeemen_names = []
     for coffeeman in Coffeeman.objects.all():
@@ -64,6 +70,14 @@ class HomePage(RoutablePageMixin, Page):
       latest_record_time = latest_record.time_stamp
       latest_records.append(latest_record)
 
+    # coffeCupOrder = latest_records
+    latest_records.sort(key=lambda x: (-1) * x.coffee_count)
+
+    # print("SORTED coffeemen are... ", latest_records)
+
+    # for deleting Coffeeman object use:
+    # Coffeeman.objects.filter(card_number="8a61b80").delete()
+
     context['latest_records'] = latest_records
     context['update_time'] = latest_record_time
 
@@ -72,6 +86,7 @@ class HomePage(RoutablePageMixin, Page):
   content_panels = Page.content_panels + [
     FieldPanel('intro'),
     FieldPanel('body'),
+    FieldPanel('ip'),
   ]
 
   class Meta:
@@ -102,7 +117,12 @@ class HomePage(RoutablePageMixin, Page):
       # time_stamp=time_stamp
     )
 
-    print("new coffeeman info: ", newCoffeeMan)
+    print("new coffeeman info: ")
+
+    print("card number: ", newCoffeeMan.card_number)
+    print("user name: ", newCoffeeMan.user_name)
+    print("coffee number: ", newCoffeeMan.coffee_count)
+    print("coffee pool: ",newCoffeeMan.coffee_pool)
 
     # for creating new Coffeeman object use:
     # newCoffeeMan = Coffeeman.objects.create(card_number="AAAA",user_name="NewProgMan")
@@ -117,5 +137,22 @@ class HomePage(RoutablePageMixin, Page):
     # print("CHECKED coffeeman object count... ", checkCoffeeman.count())
 
     response = {"OK": True}
+
+    return JsonResponse(response, safe=False)
+
+  @route(r'^sendip/$')
+  def sendip(self, request, *args, **kwargs):
+
+    ip_number = request.GET.get('ip_number', None)
+    # self.ip = ip_number
+    # self.save()
+
+    page = HomePage.objects.first()
+    page.ip = ip_number
+    page.save()
+
+    print("new ip: ", ip_number)
+
+    response = {"IP_OK": True}
 
     return JsonResponse(response, safe=False)
