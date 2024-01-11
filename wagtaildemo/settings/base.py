@@ -20,7 +20,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io', 'https://*.repl.co']
+CSRF_TRUSTED_ORIGINS = [
+  'https://*.gitpod.io', 'https://*.repl.co', 'https://*.replit.dev'
+]
 
 # Application definition
 
