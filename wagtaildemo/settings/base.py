@@ -21,7 +21,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 CSRF_TRUSTED_ORIGINS = [
-  'https://*.gitpod.io', 'https://*.repl.co', 'https://*.replit.dev'
+  'https://*.gitpod.io', 'https://*.repl.co', 'https://*.replit.dev', 'https://*.duckdns.org'
 ]
 
 # Application definition

@@ -27,6 +27,7 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
  && rm -rf /var/lib/apt/lists/*
 
 # Install the application server.
+RUN pip install -U pip
 RUN pip install "gunicorn==20.0.4"
 
 #RUN apt-get install python3-dev default-libmysqlclient-dev build-essential
