@@ -66,5 +66,5 @@ RUN python manage.py collectstatic --noinput --clear
 CMD set -xe; python manage.py migrate --noinput; gunicorn wagtaildemo.wsgi:application
 #CMD set -xe; gunicorn wagtaildemo.wsgi:application
 # you can start docker container with command:
-# docker run -d --mount type=bind,source=/home/mildfire/wagtaildemo/db.sqlite3,target=/app/db.sqlite3 -p 8000:8000 wagtaildemo
+# docker run -d --net=nginx_default --mount type=bind,source=/home/mildfire/wagtaildemo/db.sqlite3,target=/app/db.sqlite3 -p 8000:8000 wagtaildemo
 #for example !!! to have persistent database
